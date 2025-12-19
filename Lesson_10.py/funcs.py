@@ -1,24 +1,46 @@
 import data
 import random
 points = 0
-quest_index = 0
-quests_data = data.questions
+correct_answers_count = 0
 
-def generate_quest(QUEST, buttons):
-    if quest_index < len(quests_data):
-        quest = quests_data[quest_index]["quest"]
-        QUEST.config(text=quest)
+random_quests_data = list(data.questions)
+random.shuffle(random_quests_data)
+
+quest_index = 0
+
+def generate_quest(QUEST, buttons, info):
+    global quest_index
+    global correct_answers_count
+    
+    if quest_index < len(random_quests_data):
+        current_quest_data = random_quests_data[quest_index]
+        
+        QUEST.config(text=current_quest_data["quest"])
+        
+        shuffled_answers = list(current_quest_data["answers"])
+        random.shuffle(shuffled_answers)
+
         for i in range(len(buttons)):
-            buttons[i].config(text=quests_data[quest_index]["answers"][i])
+            buttons[i].config(text=shuffled_answers[i], state="normal")
+            
+        info.config(text="")
     else:
-        QUEST.config(text="Викторина закончена")
+        QUEST.config(text=f"Викторина окончена\nПравильных ответов: {correct_answers_count} из {len(random_quests_data)}")
         for btn in buttons:
             btn.config(state="disabled")
+        info.config(text="")
+
 def choice(button, QUEST, buttons, info):
     global quest_index
-    if button["text"] == quests_data[quest_index]["right"]:
-        quest_index += 1 
-        info.config(text="")
-        generate_quest(QUEST, buttons)
+    global correct_answers_count
+    
+    current_quest_data = shuffled_quests_data[quest_index]
+
+    if button["text"] == current_quest_data["right"]:
+        correct_answers_count += 1
+        info.config(text="Верно!")
     else:
-        info.config(text="Неверно")
+        info.config(text="Неверно!")
+        
+    quest_index += 1
+    generate_quest(QUEST, buttons, info)
