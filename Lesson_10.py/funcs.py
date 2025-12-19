@@ -1,4 +1,5 @@
 import data
+import random
 points = 0
 quest_index = 0
 quests_data = data.questions
@@ -21,14 +22,3 @@ def choice(button, QUEST, buttons, info):
         generate_quest(QUEST, buttons)
     else:
         info.config(text="Неверно")
-
-score = 0  # создаем переменную для счетчика очков 
- 
-# ... 
- 
-if board[y][x] == "+":  # если по координате головы змейки находится яблоко 
-    board[y][x] = "."   # убираем яблоко со старого места 
-    y = randint(0, n - 1) 
-    x = randint(0, n - 1) 
-    board[y][x] = "+"   # размещаем новое яблоко на новом случайном месте 
-    score += 1  # увеличиваем счетчик очков на 1 
