@@ -1,6 +1,6 @@
 from Cat import *
 
-cat1 = Cat("lopouhaya", "Black", "pushok", "sleeping", "Weight")
+cat1 = Cat("lopouhaya", "Black", "pushok", "sleeping")
 
 cat1.printInfo()
 

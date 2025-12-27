@@ -1,18 +1,16 @@
 class Cat:
-    def __init__(self, poroda, color, name, sleeping, weight):
-
+    def __init__(self, poroda, color, name):
         self.poroda = poroda
         self.color = color
         self.name = name
-        self.weight = 2
         self.sleeping = False
 
     def does_sleeping(self):
-        if not self.sleeping:
-            print("Isnt sleeping")
+        if self.sleeping:
+            print("Is sleeping")
             return
         self.sleeping = True
-        print("Is sleeping")
+        print("Isnt sleeping")
 
 
     def printInfo(self):
