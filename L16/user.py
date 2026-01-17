@@ -4,5 +4,3 @@ class User:
         self.__phone = phone
         self.__password = password
         self.__account = 0
-
-    
